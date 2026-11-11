@@ -1,0 +1,11 @@
+.container {
+  box-sizing: border-box;
+  width: min(1024px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+@media (max-width: 760px) {
+  .container {
+    width: calc(100% - 32px);
+  }
+}

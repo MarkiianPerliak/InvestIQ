@@ -1,1 +1,0 @@
-export const selectIsLogged = (state) => state.user.isLogged

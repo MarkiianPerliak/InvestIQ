@@ -1,3 +1,20 @@
+.page {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: calc(100vh - var(--header-height, 72px));
+  background: #f2f4fb;
+}
+
+:root {
+  --header-height: 72px;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --header-height: 60px;
+  }
+}
+
 .counter {
   font-size: 16px;
   padding: 5px 10px;

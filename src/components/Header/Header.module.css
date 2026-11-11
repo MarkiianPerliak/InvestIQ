@@ -1,0 +1,156 @@
+.header {
+  position: sticky;
+  z-index: 20;
+  top: 0;
+  flex: 0 0 72px;
+  box-sizing: border-box;
+  width: 100%;
+  height: 72px;
+  padding: 0;
+  border-bottom: 1px solid #e8e8eb;
+  background: #fff;
+  color: #262830;
+  font-family: Arial, sans-serif;
+}
+
+.header .header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  padding: 0;
+}
+
+.header__logo {
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+  text-decoration: none;
+}
+
+.header__mark {
+  position: relative;
+  z-index: 0;
+  display: block;
+  flex: 0 0 32px;
+  width: 32px;
+  height: 40px;
+}
+
+.header__mark::before,
+.header__mark::after {
+  position: absolute;
+  display: block;
+  border-radius: 10px;
+  content: '';
+}
+
+.header__mark::before {
+  top: 0;
+  left: 0;
+  width: 43px;
+  height: 34px;
+  background: #fce8dc;
+}
+
+.header__mark::after {
+  top: 6px;
+  left: 8px;
+  width: 43px;
+  height: 34px;
+  background: #f47d37;
+}
+
+.header__wordmark {
+  position: relative;
+  z-index: 1;
+  margin-left: -3px;
+  color: #08090b;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 0.015em;
+  line-height: 1;
+}
+
+.header__options {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 100%;
+}
+
+.header__profile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f5f6fa;
+  color: #555a65;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.header__username {
+  color: #555963;
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.header__divider {
+  width: 1px;
+  height: 40px;
+  margin: 0 10px;
+  background: #dedfe4;
+}
+
+.header__logout {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: #555963;
+  font-family: inherit;
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .header {
+    flex-basis: 60px;
+    height: 60px;
+  }
+
+  .header__mark {
+    transform: scale(0.75);
+    transform-origin: left center;
+  }
+
+  .header__wordmark {
+    margin-left: -10px;
+    font-size: 17px;
+  }
+
+  .header__options {
+    gap: 9px;
+  }
+
+  .header__profile {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
+
+  .header__username,
+  .header__logout {
+    font-size: 12px;
+  }
+
+  .header__divider {
+    height: 32px;
+    margin: 0 4px;
+  }
+}
