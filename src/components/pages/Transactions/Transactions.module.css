@@ -16,7 +16,7 @@
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  min-height: 34px;
+  min-height: 44px;
   padding: 0 8px;
 }
 
@@ -24,25 +24,25 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
+  gap: 12px;
   grid-column: 2;
 }
 
 .transactions__balance {
-  color: #858a97;
-  font-size: 12px;
+  color: #727887;
+  font-size: 11px;
 }
 
 .transactions__balance_control {
   display: flex;
   align-items: center;
   box-sizing: border-box;
-  width: 120px;
-  height: 42px;
-  padding: 0 12px;
+  width: 132px;
+  height: 38px;
+  padding: 0 10px;
   border: 1px solid #fff;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.4);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.45);
 }
 
 .transactions__input {
@@ -55,16 +55,16 @@
   background: transparent;
   color: #252a34;
   font-family: inherit;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 700;
-  text-align: center;
+  text-align: right;
 }
 
 .transactions__currency {
   flex: 0 0 auto;
-  margin-left: 4px;
+  margin-left: 5px;
   color: #252a34;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
 }
 
@@ -78,32 +78,32 @@
 }
 
 .transactions__confirm {
-  height: 42px;
-  padding: 0 18px;
+  height: 38px;
+  padding: 0 16px;
   border: 1px solid #fff;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.3);
+  border-radius: 14px;
   color: #858a97;
   font-size: 11px;
+  letter-spacing: 0.02em;
 }
 
 .transactions__dashboard {
   display: inline-flex;
   align-items: center;
   justify-self: end;
-  gap: 14px;
+  gap: 12px;
   padding: 8px 0;
   border: 0;
   background: transparent;
-  color: #858a97;
+  color: #9195a1;
   font-size: 12px;
   text-decoration: none;
 }
 
 .transactions__dashicon {
-  width: 18px;
-  height: 18px;
-  color: #5e626d;
+  width: 16px;
+  height: 16px;
+  color: #f47d37;
 }
 
 .transactions__box {
@@ -389,17 +389,8 @@
     width: 100%;
   }
 
-  .transactions__balance_control {
-    width: 100px;
-  }
-
   .transactions__balance_form {
-    gap: 8px;
-  }
-
-  .transactions__confirm {
-    padding-inline: 10px;
-    font-size: 9px;
+    gap: 12px;
   }
 
   .transactions__entry_form {
@@ -411,4 +402,5 @@
     padding-inline: 8px;
     font-size: 8px;
   }
+
 }
