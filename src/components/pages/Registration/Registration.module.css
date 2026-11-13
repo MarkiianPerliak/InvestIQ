@@ -156,6 +156,10 @@
   font-size: 11px;
   font-weight: 700;
   cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    box-shadow 200ms ease,
+    color 200ms ease;
 }
 
 .registration__login {
@@ -168,6 +172,25 @@
   background: #f5f6fa;
   box-shadow: 0 2px 4px rgba(31, 39, 61, 0.1);
   color: #626775;
+}
+
+.registration__login[data-active='false'] {
+  background: #f5f6fa;
+  box-shadow: 0 2px 4px rgba(31, 39, 61, 0.1);
+  color: #626775;
+}
+
+.registration__signup[data-active='true'] {
+  background: #f47d37;
+  box-shadow: 0 3px 5px rgba(244, 125, 55, 0.35);
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .registration__login,
+  .registration__signup {
+    transition: none;
+  }
 }
 
 @media (max-width: 860px) {

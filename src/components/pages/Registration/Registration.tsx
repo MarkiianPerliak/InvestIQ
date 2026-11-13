@@ -1,23 +1,46 @@
 import style from './Registration.module.css';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { useForm, type SubmitHandler } from 'react-hook-form';
+import { loginSchema, registrationSchema } from '../../../schema/loginschema';
 import Header from '../../Header/Header';
 import Container from '../../Container/Container';
-
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../../firebase/firebase';
 type FormValues = {
   email: string;
   password: string;
 };
 
 export default function Registration() {
+  const [isRegistration, setIsRegistration] = useState(false);
+  const [serverError, setServerError] = useState("")
   const {
     register,
     handleSubmit,
+    clearErrors,
     formState: { errors },
   } = useForm<FormValues>({
-    defaultValues: { email: '', password: '' },
+    resolver: zodResolver(isRegistration ? registrationSchema : loginSchema),
+    defaultValues: {
+      email: '',
+      password: '',
+    },
   });
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormValues> = async (data) =>  {
+    setServerError("")
+    try {
+      if (isRegistration) {
+        await createUserWithEmailAndPassword(auth, data.email, data.password)
+      } else {
+        await signInWithEmailAndPassword(auth, data.email, data.password)
+      }
+    } catch (error) {
+      console.log(error)
+      setServerError("Put in real data")
+    }
+  };
   return (
     <>
       <Header showUser={false} />
@@ -40,7 +63,9 @@ export default function Registration() {
                 Google
               </button>
               <p className={style.registration__text}>
-                Або увійти за допомогою ел. пошти та паролю після реєстрації
+                {isRegistration
+                  ? 'Або зареєструватися за допомогою ел. пошти та паролю'
+                  : 'Або увійти за допомогою ел. пошти та паролю після реєстрації'}
               </p>
 
               <label className={style.registration__emaill} htmlFor="registration-email">
@@ -50,12 +75,13 @@ export default function Registration() {
                 id="registration-email"
                 type="email"
                 placeholder="your@email.com"
-                aria-invalid={errors.email ? 'true' : 'false'}
-                {...register('email', { required: 'Email is required' })}
+                aria-invalid={Boolean(errors.email)}
+                aria-describedby={errors.email ? 'registration-email-error' : undefined}
+                {...register('email')}
                 className={style.registration__email}
               />
               {errors.email && (
-                <p className={style.registration__error} role="alert">
+                <p id="registration-email-error" className={style.registration__error} role="alert">
                   {errors.email.message}
                 </p>
               )}
@@ -66,21 +92,44 @@ export default function Registration() {
               <input
                 id="registration-password"
                 type="password"
-                aria-invalid={errors.password ? 'true' : 'false'}
-                {...register('password', { required: 'Password is required' })}
+                aria-invalid={Boolean(errors.password)}
+                aria-describedby={errors.password ? 'registration-password-error' : undefined}
+                {...register('password')}
                 className={style.registration__password}
               />
               {errors.password && (
-                <p className={style.registration__error} role="alert">
+                <p id="registration-password-error" className={style.registration__error} role="alert">
                   {errors.password.message}
                 </p>
               )}
 
               <div className={style.registration__actions}>
-                <button type="submit" className={style.registration__login}>
+                <button
+                  type={isRegistration ? 'button' : 'submit'}
+                  className={style.registration__login}
+                  aria-pressed={!isRegistration}
+                  data-active={String(!isRegistration)}
+                  onClick={() => {
+                    if (isRegistration) {
+                      clearErrors();
+                      setIsRegistration(false);
+                    }
+                  }}
+                >
                   УВІЙТИ
                 </button>
-                <button type="button" className={style.registration__signup}>
+                <button
+                  type={isRegistration ? 'submit' : 'button'}
+                  className={style.registration__signup}
+                  aria-pressed={isRegistration}
+                  data-active={String(isRegistration)}
+                  onClick={() => {
+                    if (!isRegistration) {
+                      clearErrors();
+                      setIsRegistration(true);
+                    }
+                  }}
+                >
                   РЕЄСТРАЦІЯ
                 </button>
               </div>
