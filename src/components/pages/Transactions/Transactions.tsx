@@ -12,7 +12,7 @@ export default function Transactions({ }: Props) {
     <>
       <Header showUser />
       <main className={`page ${style.transactions}`}>
-        <Container className={style.transactions__scaled}>
+        <Container>
           <header className={style.transactions__topbar}>
             <form className={style.transactions__balance_form} action="">
               <label className={style.transactions__balance} htmlFor="transaction-balance">

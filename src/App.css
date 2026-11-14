@@ -9,9 +9,15 @@
   --header-height: 72px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   :root {
-    --header-height: 60px;
+    --header-height: 56px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --header-height: 40px;
   }
 }
 

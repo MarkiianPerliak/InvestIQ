@@ -1,16 +1,24 @@
 .dashboard {
   position: relative;
+  isolation: isolate;
   box-sizing: border-box;
   width: 100%;
-  padding: 32px 0 52px;
+  padding: 0 0 52px;
   color: #29364f;
   font-family: Arial, sans-serif;
   text-align: center;
 }
 
-.dashboard__scaled.dashboard__scaled {
-  width: min(1024px, calc((100% - 48px) / 1.1));
-  zoom: 1.1;
+.dashboard::before {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: clamp(170px, calc(49vh - var(--header-height, 72px)), 393px);
+  border-bottom-left-radius: 120px 90px;
+  background: #f3f5fb;
+  content: '';
 }
 
 .dashboard__header {
@@ -163,7 +171,7 @@
   width: 100%;
   min-height: 46px;
   box-sizing: border-box;
-  margin: 22px auto 0;
+  margin: 9px auto 0;
   padding: 0 20px;
   border-radius: 999px;
   background: #fff;
@@ -242,14 +250,13 @@
   );
 }
 
-@media (max-width: 720px) {
-  .dashboard__scaled.dashboard__scaled {
-    width: calc((100% - 32px) / 1.1);
+@media (max-width: 768px) {
+  .dashboard {
+    padding-top: 0;
   }
 
-  .dashboard {
-    width: 100%;
-    padding-top: 20px;
+  .dashboard::before {
+    height: clamp(140px, calc(35vh - var(--header-height, 56px)), 260px);
   }
 
   .dashboard__header {
@@ -286,24 +293,64 @@
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
   .dashboard {
-    width: 100%;
+    padding-top: 0;
+  }
+
+  .dashboard::before {
+    height: clamp(100px, calc(22vh - var(--header-height, 40px)), 190px);
+    border-bottom-left-radius: 80px 60px;
+  }
+
+  .dashboard__header {
+    grid-template-columns: 1fr;
+    row-gap: 12px;
   }
 
   .dashboard__back {
-    gap: 5px;
-    font-size: 10px;
+    display: none;
+  }
+
+  .dashboard__configure {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: center;
+  }
+
+  .dashboard__balance_form {
+    grid-column: 1;
+    grid-row: 2;
   }
 
   .dashboard__summary {
+    min-height: 58px;
+    margin-top: 14px;
+    box-shadow: 0 5px 12px rgba(49, 55, 75, 0.12);
     padding-inline: 8px;
   }
 
   .dashboard__summary_item {
+    flex-direction: column;
     gap: 6px;
     padding-inline: 8px;
     font-size: 10px;
   }
 
+  .dashboard__panel {
+    margin-top: 18px;
+    padding: 16px 8px 20px;
+  }
+
+  .dashboard__board {
+    overflow: visible;
+    margin-top: 18px;
+    padding: 14px 8px;
+  }
+
+  .dashboard__chart {
+    min-width: 0;
+    height: 220px;
+    padding-inline: 4px;
+  }
 }

@@ -10,7 +10,7 @@ export default function Dashboard({}: Props) {
     <>
       <Header showUser />
       <main className={`page ${style.dashboard}`}>
-        <Container className={style.dashboard__scaled}>
+        <Container>
           <div className={style.dashboard__header}>
             <Link to="/transactions" className={style.dashboard__back}>
               <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">

@@ -1,6 +1,5 @@
-import { combineReducers, createStore } from "redux";
+import { combineReducers } from "redux";
 import { contactsReducer } from "./reducer";
-import { devToolsEnhancer } from "@redux-devtools/extension";
 import { configureStore } from "@reduxjs/toolkit";
 import storage from "redux-persist/lib/storage";
 import persistReducer from "redux-persist/lib/persistReducer";
@@ -45,4 +44,7 @@ export const store = configureStore({
 });
 
 
-export let persistor = persistStore(store);
+export const persistor = persistStore(store);
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;

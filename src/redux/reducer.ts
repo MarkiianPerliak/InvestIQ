@@ -1,6 +1,4 @@
-import { act } from 'react';
-import { actionType, filterValue } from './constants';
-import { createSlice, current, createEntityAdapter } from '@reduxjs/toolkit';
+import { createEntityAdapter, createSlice } from '@reduxjs/toolkit';
 import { addContacts, checkContact, deleteContacts, getContacts } from "./operation";
 
 // const initialState = {
@@ -10,9 +8,25 @@ import { addContacts, checkContact, deleteContacts, getContacts } from "./operat
 //   errorMessage: "",
 //   addContactLoader: false
 // };
-export const contactAdapter = createEntityAdapter();
-console.log(contactAdapter)
-const initialState = contactAdapter.getInitialState({isloading: false, errorMessage: "", addContactLoader: false})
+export interface Contact {
+  id: string;
+  text: string;
+  number: string;
+  saved: boolean;
+}
+
+interface ContactsExtraState {
+  isloading: boolean;
+  errorMessage: string;
+  addContactLoader: boolean;
+}
+
+export const contactAdapter = createEntityAdapter<Contact>();
+const initialState = contactAdapter.getInitialState<ContactsExtraState>({
+  isloading: false,
+  errorMessage: "",
+  addContactLoader: false,
+});
 // export const contactsReducer = (state = initialState, action) => {
 //     switch (action.type) {
 //         case actionType.addType:
@@ -47,6 +61,7 @@ const initialState = contactAdapter.getInitialState({isloading: false, errorMess
 const contactsSlice = createSlice({
   name: 'Contacts',
   initialState,
+  reducers: {},
   extraReducers: (builder) => {
     
     builder.addCase(getContacts.fulfilled, (state, action) => {
@@ -55,9 +70,9 @@ const contactsSlice = createSlice({
     })
     builder.addCase(getContacts.rejected, (state, action) => {
       state.isloading = false
-      state.errorMessage = action.payload
+      state.errorMessage = action.payload ?? action.error.message ?? "Failed to fetch contacts";
     })
-    builder.addCase(getContacts.pending, (state, action) => {
+    builder.addCase(getContacts.pending, (state) => {
       state.isloading = true
       state.errorMessage = ""
     })
@@ -69,9 +84,9 @@ const contactsSlice = createSlice({
     })
     builder.addCase(addContacts.rejected, (state, action) => {
       state.addContactLoader = false
-      state.errorMessage = action.payload
+      state.errorMessage = action.payload ?? action.error.message ?? "Failed to add contact";
     })
-    builder.addCase(addContacts.pending, (state, action) => {
+    builder.addCase(addContacts.pending, (state) => {
       state.addContactLoader = true
     })
 
@@ -86,5 +101,4 @@ const contactsSlice = createSlice({
 });
 
 
-export const { addContact, removeContact, saveContact } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
