@@ -1,34 +1,55 @@
 .registration {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
   box-sizing: border-box;
   width: 100%;
-  padding: 44px 0 28px;
-  color: #15161a;
-  font-family: Arial, sans-serif;
+  padding: 36px 0 50px;
+  color: #252a34;
+  font-family: Roboto, Arial, sans-serif;
+  background: #F8F9FC url('../../../assets/finance-edge-pattern.svg') center bottom / 100% auto no-repeat;
   text-align: left;
+}
+
+.registration::before {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: min(526px, 66vh);
+  border-bottom-left-radius: 120px 90px;
+  background: #f3f5fb;
+  content: '';
+}
+
+.registration::after {
+  content: none;
 }
 
 .registration__content {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 428px;
-  align-items: start;
+  grid-template-columns: minmax(0, 1fr) 436px;
+  align-items: center;
   gap: 64px;
 }
 
 .registration__left {
   display: flex;
-  min-height: 524px;
+  min-height: 535px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   justify-self: center;
   text-align: center;
-  transform: translateX(24px);
+  transform: none;
 }
 
 .registration__headline {
   margin: 0;
   color: #050505;
-  font-family: Arial, sans-serif;
+  font-family: Roboto, Arial, sans-serif;
   font-size: clamp(64px, 8vw, 100px);
   font-weight: 800;
   letter-spacing: -0.075em;
@@ -49,11 +70,11 @@
   flex-direction: column;
   box-sizing: border-box;
   width: 100%;
-  min-height: 524px;
+  min-height: 535px;
   padding: 48px 84px 50px;
   border-radius: 30px;
   background: #fff;
-  box-shadow: 0 16px 38px rgba(49, 55, 75, 0.06);
+  box-shadow: 0 10px 60px rgba(170, 178, 197, 0.2);
 }
 
 .registration__text {
@@ -194,34 +215,71 @@
 }
 
 @media (max-width: 860px) {
+  .registration {
+    align-items: flex-start;
+    padding-top: 30px;
+    background-position: left bottom;
+    background-size: 1000px auto;
+  }
+
+  .registration::before {
+    height: min(526px, 55vh);
+  }
+
+  .registration::after {
+    top: min(526px, 55vh);
+    background-size: 680px auto;
+  }
+
   .registration__content {
-    grid-template-columns: minmax(0, 1fr) minmax(360px, 428px);
-    gap: 32px;
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    max-width: 436px;
+    margin-inline: auto;
+    gap: 28px;
   }
 
   .registration__form {
-    padding-inline: 52px;
+    min-height: 535px;
+    padding-inline: 66px;
   }
 
   .registration__left {
+    min-height: 180px;
     transform: none;
   }
 
   .registration__headline {
-    font-size: clamp(50px, 8vw, 76px);
+    font-size: clamp(64px, 10vw, 84px);
   }
 }
 
 @media (max-width: 640px) {
   .registration {
-    padding: 24px 0;
+    padding: 72px 0 28px;
+  }
+
+  .registration::before {
+    height: 286px;
+    border-bottom-left-radius: 80px 60px;
+  }
+
+  .registration::after {
+    top: 286px;
+    background-position: center top;
+    background-size: 640px 320px;
+  }
+
+  .registration {
+    background-position: center bottom;
+    background-size: 1200px auto;
   }
 
   .registration__content {
     grid-template-columns: 1fr;
     align-content: center;
     justify-items: center;
-    gap: 24px;
+    gap: 60px;
   }
 
   .registration__left {
@@ -230,7 +288,7 @@
   }
 
   .registration__headline {
-    font-size: clamp(50px, 13vw, 68px);
+    font-size: clamp(44px, 15.5vw, 58px);
   }
 
   .registration__brandline {
@@ -239,9 +297,10 @@
   }
 
   .registration__form {
-    min-height: 0;
-    padding: 32px 28px;
-    border-radius: 24px;
+    min-height: 525px;
+    padding: 38px 28px 46px;
+    border-radius: 30px;
+    box-shadow: 5px 10px 20px rgba(170, 178, 197, 0.4);
   }
 
   .registration__actions {

@@ -2,10 +2,10 @@
   position: sticky;
   z-index: 20;
   top: 0;
-  flex: 0 0 72px;
+  flex: 0 0 56px;
   box-sizing: border-box;
   width: 100%;
-  height: 72px;
+  height: 56px;
   padding: 0;
   border-bottom: 1px solid #e8e8eb;
   background: #fff;
@@ -20,7 +20,7 @@
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  padding: 0 18px;
+  padding: 0 26px;
 }
 
 .header__logo {
@@ -34,41 +34,41 @@
   position: relative;
   z-index: 0;
   display: block;
-  flex: 0 0 32px;
-  width: 32px;
-  height: 40px;
+  flex: 0 0 39px;
+  width: 39px;
+  height: 31px;
 }
 
 .header__mark::before,
 .header__mark::after {
   position: absolute;
   display: block;
-  border-radius: 10px;
+  border-radius: 8px;
   content: '';
 }
 
 .header__mark::before {
   top: 0;
   left: 0;
-  width: 43px;
-  height: 34px;
+  width: 33px;
+  height: 26px;
   background: #fce8dc;
 }
 
 .header__mark::after {
-  top: 6px;
-  left: 8px;
-  width: 43px;
-  height: 34px;
+  top: 5px;
+  left: 6px;
+  width: 33px;
+  height: 26px;
   background: #f47d37;
 }
 
 .header__wordmark {
   position: relative;
   z-index: 1;
-  margin-left: -3px;
+  margin-left: -17px;
   color: #08090b;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.015em;
   line-height: 1;
@@ -85,24 +85,24 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: #f5f6fa;
   color: #555a65;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
 }
 
 .header__username {
   color: #555963;
-  font-size: 15px;
+  font-size: 12px;
   white-space: nowrap;
 }
 
 .header__divider {
   width: 1px;
-  height: 40px;
+  height: 28px;
   margin: 0 10px;
   background: #dedfe4;
 }
@@ -115,7 +115,7 @@
   background: transparent;
   color: #555963;
   font-family: inherit;
-  font-size: 13px;
+  font-size: 12px;
   text-decoration: underline;
   cursor: pointer;
 }
@@ -132,59 +132,24 @@
     height: 56px;
   }
 
-  .header__mark {
-    flex-basis: 28px;
-    width: 28px;
-    height: 32px;
-  }
-
-  .header__mark::before,
-  .header__mark::after {
-    width: 34px;
-    height: 27px;
-  }
-
-  .header__mark::after {
-    top: 4px;
-    left: 6px;
-  }
-
-  .header__wordmark {
-    margin-left: -7px;
-    font-size: 16px;
-  }
-
-  .header__profile {
-    width: 32px;
-    height: 32px;
-  }
-
-  .header__username,
-  .header__logout {
-    font-size: 12px;
-  }
-
-  .header__divider {
-    height: 36px;
-    margin-inline: 4px;
-  }
+  .header__inner { padding-inline: 18px; }
 }
 
 @media (max-width: 480px) {
   .header {
-    flex-basis: 40px;
-    height: 40px;
+    flex-basis: 56px;
+    height: 56px;
   }
 
   .header__mark {
-    flex-basis: 24px;
-    width: 24px;
-    height: 24px;
+    flex-basis: 29px;
+    width: 29px;
+    height: 26px;
   }
 
   .header__mark::before,
   .header__mark::after {
-    width: 28px;
+    width: 26px;
     height: 21px;
   }
 
@@ -194,9 +159,11 @@
   }
 
   .header__wordmark {
-    margin-left: -9px;
-    font-size: 12px;
+    margin-left: -7px;
+    font-size: 14px;
   }
+
+  .header__inner { padding-inline: 12px; }
 
   .header__options {
     gap: 8px;

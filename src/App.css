@@ -1,12 +1,12 @@
 .page {
   box-sizing: border-box;
   width: 100%;
-  min-height: calc(100vh - var(--header-height, 72px));
+  min-height: calc(100vh - var(--header-height, 56px));
   background: #f2f4fb;
 }
 
 :root {
-  --header-height: 72px;
+  --header-height: 56px;
 }
 
 @media (max-width: 768px) {
@@ -17,7 +17,7 @@
 
 @media (max-width: 480px) {
   :root {
-    --header-height: 40px;
+    --header-height: 56px;
   }
 }
 
