@@ -7,6 +7,7 @@ import Header from '../../Header/Header';
 import Container from '../../Container/Container';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../firebase/firebase';
+import { loginGoogle } from '../../../features/auth/auth';
 type FormValues = {
   email: string;
   password: string;
@@ -41,6 +42,15 @@ export default function Registration() {
       setServerError("Put in real data")
     }
   };
+
+  const googleSign = async () => {
+    try {
+      await loginGoogle()
+    } catch (error) {
+      console.log(error)
+      setServerError("Error")
+    }
+  }
   return (
     <>
       <Header showUser={false} />
@@ -56,7 +66,7 @@ export default function Registration() {
               <p className={style.registration__text}>
                 Ви можете авторизуватися за допомогою акаунта Google
               </p>
-              <button className={style.registration__google} type="button">
+              <button onClick={googleSign} className={style.registration__google} type="button">
                 <span className={style.registration__google_mark} aria-hidden="true">
                   G
                 </span>
