@@ -2,12 +2,40 @@ import style from './Transactions.module.css';
 import Header from '../../Header/Header';
 import { Link } from 'react-router-dom';
 import Container from '../../Container/Container';
+import type { newTransaction } from '../../../features/transactions/transaction.types';
+import { createTransaction } from '../../../redux/transactions/transactionsOperations';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hook';
 
 type Props = {};
 
 const emptyRows = Array.from({ length: 9 }, (_, index) => index);
 
 export default function Transactions({ }: Props) {
+  const dispatch = useAppDispatch()
+  const user = useAppSelector(state => state.user.user?.uid)
+  const handleSubmit = (e:React.SubmitEvent) => {
+    e.preventDefault()
+
+    // const overall = e.target.elements.overall.value;
+    // const describtion = e.target.elements.desc.value;
+    const overall = 50;
+    const describtion = "privyt";
+    const category = "Other";
+    const date = new Date().toDateString();
+    const type = "income";
+
+    const transaction:newTransaction = {
+      overall,
+      describtion,
+      category,
+      date,
+      type
+    }
+    if (user) {
+      dispatch(createTransaction({id: user, data: transaction}))
+    }
+  }
+
   return (
     <>
       <Header showUser />
@@ -64,7 +92,7 @@ export default function Transactions({ }: Props) {
               </button>
             </div>
 
-            <form className={style.transactions__entry_form} action="">
+            <form onSubmit={handleSubmit} className={style.transactions__entry_form} action="">
               <div className={style.transactions__date_field}>
                 <svg className={style.transactions__dateicon} viewBox="0 0 20 20" aria-hidden="true">
                   <rect x="2" y="3" width="16" height="15" rx="2" fill="none" stroke="currentColor" strokeWidth="1.7" />
@@ -79,6 +107,7 @@ export default function Transactions({ }: Props) {
                   type="text"
                   placeholder="Опис товару"
                   aria-label="Опис товару"
+                  name='desc'
                 />
                 <div className={style.transactions__amount_field}>
                   <input
@@ -86,6 +115,7 @@ export default function Transactions({ }: Props) {
                     type="text"
                     placeholder="0,00"
                     aria-label="Сума"
+                    name='overall'
                   />
                   <svg className={style.transactions__money_icon} viewBox="0 0 20 20" aria-hidden="true">
                     <rect x="2" y="2" width="16" height="16" rx="2" fill="none" stroke="currentColor" strokeWidth="1.5" />

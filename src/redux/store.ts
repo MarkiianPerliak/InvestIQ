@@ -3,11 +3,11 @@ import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import userSlice from "./user/userSlice";
 // import { filterReducer } from "./filterReducer";
-
+import transactionReducer from "./transactions/transactionsSlice"
 
 
 const rootReduce = combineReducers({
-  // transactions: contactsReducer,
+  transactions: transactionReducer,
   // filter: filterReducer,
   user: userSlice
 });

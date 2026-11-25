@@ -10,7 +10,7 @@ export default function Navigation() {
         <div>
             <NavLink to={"/"}>Registration</NavLink>
             <NavLink to={"/dashboard"}>Dashboard</NavLink>
-            <NavLink to={"/transactions"}>Dashboard</NavLink>
+            <NavLink to={"/transactions"}>Transactions</NavLink>
             {/* <button onClick={() => dispatch(logOut())}>Log out</button> */}
         </div>
     </div>
